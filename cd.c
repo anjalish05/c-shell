@@ -2,6 +2,7 @@
 
 #define PATH_MAX 4096
 static char previous_dir[PATH_MAX];
+char *LWD, *PWD;
 
 void cd_command(char *dir) {
 
@@ -27,23 +28,36 @@ void cd_command(char *dir) {
         //     printf("No previous directory\n");
         // }
         // Go to the previous directory
-        char* prev_dir = getenv("OLDPWD");
-        if (prev_dir != NULL && chdir(prev_dir) != 0) {
-            perror("shell");
+
+        char *prev_dir = getenv("OLDPWD");
+        if(prev_dir != NULL) {
+            chdir(prev_dir);
         }
-        if (prev_dir[0] != '\0') {
-            char* temp = get_curr_dir(); // Store current directory
-            if (chdir(prev_dir) != 0) {
-                perror("shell");
-            }
-            
-            printf("%s\n", prev_dir); // Print previous directory
-            strcpy(previous_dir, temp); // Update previous directory
-            free(temp);
-        } 
-        else {
-            fprintf(stderr, "No previous directory\n");
+		else {
+            fprintf(stderr, "cd: OLDPWD not set\n");
         }
+        printf("%s\n", prev_dir);
+
+        // char current_dir[1024];
+        // if (getcwd(current_dir, sizeof(current_dir)) == NULL) {
+        //     perror("getcwd");
+        //     // return 1;
+        // }
+
+        // char *prev_dir = getenv("OLDPWD");
+        // if (prev_dir == NULL) {
+        //     fprintf(stderr, "OLDPWD is not set.\n");
+        //     // return 1;
+        // }
+
+        // if (chdir(prev_dir) == -1) {
+        //     perror("chdir");
+        //     // return 1;
+        // }
+        // printf("%s\n", prev_dir);
+
+        // // Update the OLDPWD environment variable to the current directory.
+        // setenv("OLDPWD", current_dir, 1);
     } 
     
     else if (strcmp(dir, "~") == 0) {
