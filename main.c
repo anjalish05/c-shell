@@ -36,6 +36,12 @@ int main() {
         if (strcmp(input, "exit") == 0) {
             break;
         }
+        if (strcmp(input, "quit") == 0) {
+            break;
+        }
+        if (strcmp(input, "q") == 0) {
+            break;
+        }
 
         else if(strncmp(input, "echo", 4) == 0) {
             int argc = 0;
