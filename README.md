@@ -17,6 +17,7 @@ make
 - `pwd` - Does not take any arguments. Prints the Current Working Directory.
 - `echo` - Takes `custom text` as the argument.
 - `cd` - Performs all the functions of changing the working directories.
-  - `cd ~`
-  - `cd ..`
-  - `cd -`
+  - `cd ~` - To go to home directory.
+  - `cd ..` - To go one level above.
+  - `cd -` - Print the previous directory and go to the previous directory. 
+- `exit` `quit` `q` - To exit from the custom terminal.
